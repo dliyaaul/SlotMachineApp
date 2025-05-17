@@ -40,7 +40,7 @@ namespace AplikasiAlQur_an
 
         private void button1_Click(object sender, EventArgs e)
         {            
-            this.DialogResult =DialogResult.Retry;
+            this.DialogResult = DialogResult.Abort;
             this.Close();
         }
 
@@ -51,10 +51,8 @@ namespace AplikasiAlQur_an
 
         private void panel4_Click(object sender, EventArgs e)
         {
-            //contoh 
-            //AlQuran alQuran = new AlQuran();
-            //alQuran.Show();
-            //this.Hide();
+            this.DialogResult = DialogResult.Retry;
+            this.Close();
         }
     }
 }
