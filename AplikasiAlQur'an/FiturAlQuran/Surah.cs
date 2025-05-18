@@ -13,6 +13,6 @@ namespace AplikasiAlQur_an
         public string nama_latin { get; set; }
         public int jumlah_ayat { get; set; }
         public string tempat_turun { get; set; }
-        public string arti { get; set; }
+        public string arti { get; set; }        
     }
 }

@@ -71,7 +71,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(281, 74);
+            this.label1.Location = new System.Drawing.Point(88, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 28);
             this.label1.TabIndex = 10;
@@ -84,7 +84,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.Window;
-            this.label2.Location = new System.Drawing.Point(23, 81);
+            this.label2.Location = new System.Drawing.Point(23, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 23);
             this.label2.TabIndex = 11;
@@ -129,6 +129,7 @@
             this.Controls.Add(this.btnPrev);
             this.Name = "FormAyat";
             this.Text = "FormAyat";
+            this.Load += new System.EventHandler(this.FormAyat_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 

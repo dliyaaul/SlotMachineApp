@@ -15,11 +15,19 @@ namespace AplikasiAlQur_an
     public partial class FormAyat: Form
     {
         private int nomorSurah;
+        private int mulaiAyat = 1;
 
         public FormAyat(int nomorSurah)
         {
             InitializeComponent();
             this.nomorSurah = nomorSurah;
+            this.Load += FormAyat_Load;            
+        }
+        public FormAyat(int nomorSurah, int mulaiAyat)
+        {
+            InitializeComponent();
+            this.nomorSurah = nomorSurah;
+            this.mulaiAyat = mulaiAyat;
             this.Load += FormAyat_Load;
         }
 
@@ -42,7 +50,8 @@ namespace AplikasiAlQur_an
                     label1.Text = $"{detail.nama_latin} - {detail.nama}";
 
                     richAyat.Clear();
-                    foreach (var ayat in detail.ayat)
+
+                    foreach (var ayat in detail.ayat.Where(a => a.nomor >= mulaiAyat))
                     {
                         richAyat.SelectionFont = new Font("Segoe UI", 12, FontStyle.Bold);
                         richAyat.AppendText($"[{ayat.nomor}]\n");
@@ -62,6 +71,7 @@ namespace AplikasiAlQur_an
                 }
             }
         }
+
 
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -93,6 +103,11 @@ namespace AplikasiAlQur_an
             {
                 MessageBox.Show("Ini adalah surah pertama.");
             }         
+        }
+
+        private void FormAyat_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

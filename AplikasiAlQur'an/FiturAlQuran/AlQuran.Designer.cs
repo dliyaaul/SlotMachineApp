@@ -36,10 +36,12 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearchSurah = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listJuz = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -133,6 +135,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Desktop;
+            this.tabPage2.Controls.Add(this.listJuz);
             this.tabPage2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(136)))), ((int)(((byte)(86)))));
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
@@ -140,6 +143,19 @@
             this.tabPage2.Size = new System.Drawing.Size(531, 617);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Juz";
+            // 
+            // listJuz
+            // 
+            this.listJuz.BackColor = System.Drawing.SystemColors.WindowText;
+            this.listJuz.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listJuz.ForeColor = System.Drawing.SystemColors.Window;
+            this.listJuz.FormattingEnabled = true;
+            this.listJuz.ItemHeight = 31;
+            this.listJuz.Location = new System.Drawing.Point(26, 32);
+            this.listJuz.Name = "listJuz";
+            this.listJuz.Size = new System.Drawing.Size(478, 560);
+            this.listJuz.TabIndex = 0;
+            this.listJuz.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // tabPage3
             // 
@@ -167,9 +183,11 @@
             this.Controls.Add(this.button1);
             this.Name = "AlQuran";
             this.Text = "AlQuran";
+            this.Load += new System.EventHandler(this.AlQuran_Load_1);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -186,5 +204,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox listSurah;
+        private System.Windows.Forms.ListBox listJuz;
     }
 }
