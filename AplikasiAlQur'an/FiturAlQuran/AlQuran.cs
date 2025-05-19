@@ -71,6 +71,7 @@ namespace AplikasiAlQur_an
         {
             _ = LoadSurahFromApiAsync();
             LoadJuzFromTable();
+            LoadBookmarks();
         }
 
         private async Task LoadSurahFromApiAsync()
@@ -155,6 +156,39 @@ namespace AplikasiAlQur_an
         }
 
         private void AlQuran_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {           
+        }
+        private void LoadBookmarks()
+        {
+            listBookmark.Items.Clear();
+            if (Properties.Settings.Default.Bookmarks != null)
+            {
+                foreach (var item in Properties.Settings.Default.Bookmarks)
+                {
+                    listBookmark.Items.Add(item);
+                }
+            }        
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "Penanda" || tabControl1.SelectedIndex == 3)
+            {
+                LoadBookmarks();
+            }
+        }
+
+        private void listBookmark_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

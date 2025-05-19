@@ -16,21 +16,15 @@ namespace AplikasiAlQur_an
     {
         private int nomorSurah;
         private int mulaiAyat = 1;
+        private List<Ayat> semuaAyat = new List<Ayat>();
 
         public FormAyat(int nomorSurah)
         {
             InitializeComponent();
             this.nomorSurah = nomorSurah;
-            this.Load += FormAyat_Load;            
-        }
-        public FormAyat(int nomorSurah, int mulaiAyat)
-        {
-            InitializeComponent();
-            this.nomorSurah = nomorSurah;
-            this.mulaiAyat = mulaiAyat;
             this.Load += FormAyat_Load;
+            richAyat.MouseDoubleClick += richAyat_MouseDoubleClick;
         }
-
         private async void FormAyat_Load(object sender, EventArgs e)
         {
             await LoadSurahAsync();
@@ -46,6 +40,7 @@ namespace AplikasiAlQur_an
                     string response = await client.GetStringAsync(url);
 
                     SurahDetail detail = JsonConvert.DeserializeObject<SurahDetail>(response);
+                    semuaAyat = detail.ayat;
 
                     label1.Text = $"{detail.nama_latin} - {detail.nama}";
 
@@ -71,8 +66,6 @@ namespace AplikasiAlQur_an
                 }
             }
         }
-
-
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
@@ -108,6 +101,73 @@ namespace AplikasiAlQur_an
         private void FormAyat_Load_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void richAyat_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = richAyat.GetCharIndexFromPosition(e.Location);
+            int lineIndex = richAyat.GetLineFromCharIndex(index);
+            string selectedLine = richAyat.Lines.ElementAtOrDefault(lineIndex)?.Trim();
+
+            if (string.IsNullOrEmpty(selectedLine))
+            {
+                MessageBox.Show("Silakan klik langsung pada teks ayat (bukan area kosong).", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Coba cocokkan dengan ayat manapun (nomor, teks Arab, atau terjemahan)
+            var ayatDitemukan = semuaAyat.FirstOrDefault(a =>
+                selectedLine.Contains($"[{a.nomor}]") ||
+                selectedLine.Contains(a.ar) ||
+                selectedLine.Contains(a.idn));
+
+            if (ayatDitemukan != null)
+            {
+                string namaSurah = label1.Text;
+                string dataBookmark = $"[{namaSurah} : {ayatDitemukan.nomor}] {ayatDitemukan.ar}";
+
+                ContextMenuStrip menu = new ContextMenuStrip();
+                menu.Items.Add("Bagikan", null, (s, ea) => BagikanAyat(dataBookmark));
+                menu.Items.Add("Tandai Terakhir Dibaca", null, (s, ea) => TandaiTerakhirDibaca(dataBookmark));
+                menu.Items.Add("Simpan ke Bookmark", null, (s, ea) => SimpanBookmark(dataBookmark));
+                menu.Show(Cursor.Position);
+            }
+            else
+            {
+                MessageBox.Show("Gagal menemukan nomor ayat. Coba klik langsung teks Arab ayat.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BagikanAyat(string ayatText)
+        {
+            try
+            {
+                Clipboard.SetText(ayatText);
+                MessageBox.Show("Ayat disalin ke clipboard. Silakan tempelkan (paste) di tempat lain untuk membagikan.", "Bagikan", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal menyalin ayat: " + ex.Message);
+            }
+        }
+
+        private void TandaiTerakhirDibaca(string ayatText)
+        {
+            Properties.Settings.Default.TerakhirDibaca = ayatText;
+            Properties.Settings.Default.Save();
+            MessageBox.Show("Ayat ditandai sebagai terakhir dibaca.", "Tandai", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SimpanBookmark(string ayatText)
+        {
+            if (Properties.Settings.Default.Bookmarks == null)
+            {
+                Properties.Settings.Default.Bookmarks = new System.Collections.Specialized.StringCollection();
+            }
+
+            Properties.Settings.Default.Bookmarks.Add(ayatText);
+            Properties.Settings.Default.Save();
+            MessageBox.Show("Ayat disimpan ke bookmark.", "Bookmark", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

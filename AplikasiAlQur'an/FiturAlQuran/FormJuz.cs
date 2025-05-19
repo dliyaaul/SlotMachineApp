@@ -102,5 +102,39 @@ namespace AplikasiAlQur_an.FiturAlQuran
         {
 
         }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int currentIndex = AlQuran.daftarJuz.FindIndex(j => j.Juz == selectedJuz.Juz);
+            if (currentIndex < AlQuran.daftarJuz.Count - 1)
+            {
+                var nextJuz = AlQuran.daftarJuz[currentIndex + 1];
+                var newForm = new FormJuz(nextJuz);
+                this.Hide();
+                newForm.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Sudah di Juz terakhir.");
+            }
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            int currentIndex = AlQuran.daftarJuz.FindIndex(j => j.Juz == selectedJuz.Juz);
+            if (currentIndex > 0)
+            {
+                var prevJuz = AlQuran.daftarJuz[currentIndex - 1];
+                var newForm = new FormJuz(prevJuz);
+                this.Hide();
+                newForm.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Sudah di Juz pertama.");
+            }
+        }
     }
 }

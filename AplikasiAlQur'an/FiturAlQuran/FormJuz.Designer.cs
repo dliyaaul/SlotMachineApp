@@ -72,6 +72,7 @@
             this.btnPrev.Text = "←";
             this.btnPrev.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPrev.UseVisualStyleBackColor = false;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnNext
             // 
@@ -85,6 +86,7 @@
             this.btnNext.Text = "→";
             this.btnNext.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // richJuz
             // 

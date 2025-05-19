@@ -39,9 +39,11 @@
             this.listJuz = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.listBookmark = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -64,10 +66,10 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI Semibold", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(-1, 108);
+            this.tabControl1.Location = new System.Drawing.Point(-1, 102);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(539, 661);
+            this.tabControl1.Size = new System.Drawing.Size(539, 667);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -81,9 +83,10 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(531, 617);
+            this.tabPage1.Size = new System.Drawing.Size(531, 623);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Surah";
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // listSurah
             // 
@@ -140,7 +143,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(531, 617);
+            this.tabPage2.Size = new System.Drawing.Size(531, 623);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Juz";
             // 
@@ -151,27 +154,42 @@
             this.listJuz.ForeColor = System.Drawing.SystemColors.Window;
             this.listJuz.FormattingEnabled = true;
             this.listJuz.ItemHeight = 31;
-            this.listJuz.Location = new System.Drawing.Point(26, 32);
+            this.listJuz.Location = new System.Drawing.Point(0, 0);
             this.listJuz.Name = "listJuz";
-            this.listJuz.Size = new System.Drawing.Size(478, 560);
+            this.listJuz.Size = new System.Drawing.Size(535, 622);
             this.listJuz.TabIndex = 0;
             this.listJuz.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.SystemColors.Desktop;
+            this.tabPage3.Controls.Add(this.listBookmark);
             this.tabPage3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(136)))), ((int)(((byte)(86)))));
             this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(531, 617);
+            this.tabPage3.Size = new System.Drawing.Size(531, 623);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Penanda";
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // directorySearcher1
             // 
             this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
             this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // listBookmark
+            // 
+            this.listBookmark.BackColor = System.Drawing.SystemColors.WindowText;
+            this.listBookmark.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBookmark.ForeColor = System.Drawing.SystemColors.Window;
+            this.listBookmark.FormattingEnabled = true;
+            this.listBookmark.ItemHeight = 31;
+            this.listBookmark.Location = new System.Drawing.Point(-1, 1);
+            this.listBookmark.Name = "listBookmark";
+            this.listBookmark.Size = new System.Drawing.Size(535, 622);
+            this.listBookmark.TabIndex = 0;
+            this.listBookmark.SelectedIndexChanged += new System.EventHandler(this.listBookmark_SelectedIndexChanged);
             // 
             // AlQuran
             // 
@@ -188,6 +206,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -205,5 +224,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ListBox listSurah;
         private System.Windows.Forms.ListBox listJuz;
+        private System.Windows.Forms.ListBox listBookmark;
     }
 }
