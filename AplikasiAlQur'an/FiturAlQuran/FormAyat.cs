@@ -106,20 +106,28 @@ namespace AplikasiAlQur_an
         private void richAyat_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = richAyat.GetCharIndexFromPosition(e.Location);
-            int lineIndex = richAyat.GetLineFromCharIndex(index);
-            string selectedLine = richAyat.Lines.ElementAtOrDefault(lineIndex)?.Trim();
 
-            if (string.IsNullOrEmpty(selectedLine))
+            // Pastikan index tidak out of bounds
+            if (index < 0 || index >= richAyat.Text.Length)
             {
                 MessageBox.Show("Silakan klik langsung pada teks ayat (bukan area kosong).", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // Coba cocokkan dengan ayat manapun (nomor, teks Arab, atau terjemahan)
+            // Ambil kata/kalimat yang diklik
+            string clickedText = GetWordAtIndex(richAyat.Text, index).Trim();
+
+            if (string.IsNullOrEmpty(clickedText))
+            {
+                MessageBox.Show("Silakan klik langsung pada teks ayat (bukan area kosong).", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Coba cocokkan dengan ayat
             var ayatDitemukan = semuaAyat.FirstOrDefault(a =>
-                selectedLine.Contains($"[{a.nomor}]") ||
-                selectedLine.Contains(a.ar) ||
-                selectedLine.Contains(a.idn));
+                clickedText.Contains($"[{a.nomor}]") ||
+                a.ar.Contains(clickedText) ||
+                a.idn.Contains(clickedText));
 
             if (ayatDitemukan != null)
             {
@@ -136,6 +144,25 @@ namespace AplikasiAlQur_an
             {
                 MessageBox.Show("Gagal menemukan nomor ayat. Coba klik langsung teks Arab ayat.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private string GetWordAtIndex(string text, int index)
+        {
+            if (string.IsNullOrEmpty(text) || index >= text.Length)
+                return string.Empty;
+
+            int start = index;
+            int end = index;
+
+            // Geser ke kiri sampai ketemu spasi
+            while (start > 0 && !char.IsWhiteSpace(text[start - 1]))
+                start--;
+
+            // Geser ke kanan sampai ketemu spasi
+            while (end < text.Length && !char.IsWhiteSpace(text[end]))
+                end++;
+
+            return text.Substring(start, end - start);
         }
 
         private void BagikanAyat(string ayatText)

@@ -54,5 +54,33 @@ namespace AplikasiAlQur_an
             this.DialogResult = DialogResult.Retry;
             this.Close();
         }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void panel6_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Yes;
+            this.Close();
+        }
+
+        private void panel5_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

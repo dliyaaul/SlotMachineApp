@@ -15,3 +15,6 @@ D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\bin\Debug\Newton
 D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\obj\Debug\Aplikasi.F084010F.Up2Date
 D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\obj\Debug\AplikasiAlQur_an.FormAyat.resources
 D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\obj\Debug\AplikasiAlQur_an.FiturAlQuran.FormJuz.resources
+D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\obj\Debug\AplikasiAlQur_an.FiturHafalan.Hafalan.resources
+D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\obj\Debug\AplikasiAlQur_an.FiturDashboard.Dashboard.resources
+D:\Document Matkul\SEMESTER 4\AplikasiAlQur'an\AplikasiAlQur'an\obj\Debug\AplikasiAlQur_an.JadwalSholat.resources
